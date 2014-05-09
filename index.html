@@ -30,8 +30,10 @@
             window.console = {
                 log: function () {
                     var pre = document.createElement('pre');
-                    pre.append(Array.join(arguments, ', '));
-                    document.body.append(pre);
+                    pre.appendChild(document.createTextNode(
+                        Array.prototype.join.call(arguments, ', ')
+                    ));
+                    document.body.appendChild(pre);
                 }
             };
         }
