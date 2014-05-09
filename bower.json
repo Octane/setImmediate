@@ -19,7 +19,6 @@
       ".gitignore",
       "bower.json",
       "index.html",
-      "LICENSE",
-      "build"
+      "LICENSE"
   ]
 }
