@@ -4,7 +4,10 @@ To use the setImmediate polyfill, just drop a single JavaScript file into your p
 ```html
 <script src="setimmediate.js"></script>
 ```
-Download the [latest setImmediate polyfill from GitHub](https://raw.githubusercontent.com/Octane/setImmediate/master/setimmediate.js).
+Download the [latest setImmediate polyfill from GitHub](https://raw.githubusercontent.com/Octane/setImmediate/master/setimmediate.js) or install via Bower:
+```shell
+bower install setImmediate
+```
 
 ##Documentation
 

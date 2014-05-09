@@ -15,14 +15,7 @@
         </a>
     </h1>
 
-    <!--[if IE 8]>
-        <script src="setimmediate-ie8.js"></script>
-    <![endif]-->
-
-    <script src="setimmediate.js"></script>
-
     <script>
-
         try {
             console.log;
         }
@@ -37,7 +30,15 @@
                 }
             };
         }
+    </script>
 
+    <!--[if IE 8]>
+        <script src="setimmediate-ie8.js"></script>
+    <![endif]-->
+
+    <script src="setimmediate.js"></script>
+
+    <script>
         console.log('setImmediate polyfill tests:');
         var x = 0,
             queue = [],
@@ -78,7 +79,6 @@
         window.clearImmediate(id6);
         console.log('test clearImmediate: ', clear0 && clear6);
         console.log('test async: ', x == 0);
-
      </script>
 
 </body>
