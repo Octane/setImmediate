@@ -17,7 +17,7 @@
 
     <script>
         try {
-            console.log;
+            console.clear();
         }
         catch (error) {
             window.console = {
@@ -40,41 +40,41 @@
 
     <script>
         console.log('setImmediate polyfill tests:');
-        var x = 0,
-            queue = [],
-            clear0 = true,
-            clear6 = true;
-            id0 = window.setImmediate(function () {
-                clear0 = false;
-                console.log('clearImmediate(id0) fail!');
-            }),
-            id1 = window.setImmediate(function () {
-                x = 1;
-                queue.push(1);
-                console.log('test no args: ', arguments.length == 0);
-            }),
-            id2 = window.setImmediate(function (a) {
-                x = 2;
-                queue.push(2);
-                console.log('test 1 arg: ', a);
-            }, 'works'),
-            id3 = window.setImmediate(function (a, b) {
-                x = 3;
-                queue.push(3);
-                console.log('test 2 args: ', a, b);
-            }, 'works ', 'too'),
-            id4 = window.setImmediate(function (a, b, c, d, e, f, g) {
-                x = 4;
-                queue.push(4);
-                console.log('test many args: ', a, b, c, d, e, f, g);
-            }, 'a', 'b', 'c', 'd', 'e', 'f', 'g'),
-            id5 = window.setImmediate(function () {
-                console.log('test queue: ', queue.join(', '));
-            }),
-            id6 = window.setImmediate(function () {
-                clear6 = false;
-                console.log('clearImmediate(id6) fail!');
-            });
+        var x = 0;
+        var queue = [];
+        var clear0 = true;
+        var clear6 = true;
+        var id0 = window.setImmediate(function () {
+            clear0 = false;
+            console.log('clearImmediate(id0) fail!');
+        });
+        var id1 = window.setImmediate(function () {
+            x = 1;
+            queue.push(1);
+            console.log('test no args: ', arguments.length == 0);
+        });
+        var id2 = window.setImmediate(function (a) {
+            x = 2;
+            queue.push(2);
+            console.log('test 1 arg: ', a);
+        }, 'works');
+        var id3 = window.setImmediate(function (a, b) {
+            x = 3;
+            queue.push(3);
+            console.log('test 2 args: ', a, b);
+        }, 'works ', 'too');
+        var id4 = window.setImmediate(function (a, b, c, d, e, f, g) {
+            x = 4;
+            queue.push(4);
+            console.log('test many args: ', a, b, c, d, e, f, g);
+        }, 'a', 'b', 'c', 'd', 'e', 'f', 'g');
+        var id5 = window.setImmediate(function () {
+            console.log('test queue: ', queue.join(', '));
+        });
+        var id6 = window.setImmediate(function () {
+            clear6 = false;
+            console.log('clearImmediate(id6) fail!');
+        });
         window.clearImmediate(id0);
         window.clearImmediate(id6);
         console.log('test clearImmediate: ', clear0 && clear6);
