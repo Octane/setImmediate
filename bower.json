@@ -17,8 +17,8 @@
   "license": "MIT",
   "ignore": [
       ".gitignore",
-      "bower.json",
       "index.html",
+      "README.md",
       "LICENSE"
   ]
 }
