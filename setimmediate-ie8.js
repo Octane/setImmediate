@@ -1,14 +1,14 @@
 /**
- * IE8 setImmediate polyfill v1.0.0
- * © 2014 Dmitry Korobkin
+ * IE8 setImmediate polyfill v1.0.1
+ * © 2014–2015 Dmitry Korobkin
  * Released under the MIT license
  * github.com/Octane/setImmediate
  */
 window instanceof Object || function () {
 
-    var uid = 0,
-        storage = {},
-        slice = Array.prototype.slice;
+    var uid = 0;
+    var storage = {};
+    var slice = Array.prototype.slice;
 
     function fastApply(args) {
         var func = args[0];
@@ -24,11 +24,15 @@ window instanceof Object || function () {
     }
 
     function setImmediate() {
-        var id = uid++,
-            args = arguments;
+        var id = uid++;
+        var i = arguments.length;
+        var args = new Array(i);
+        while (i--) {
+            args[i] = arguments[i];
+        }
         function onReadyStateChange() {
             this.onreadystatechange = null;
-            document.removeChild(this);
+            document.body.removeChild(this);
             if (storage[id]) {
                 delete storage[id];
                 fastApply(args);
@@ -38,7 +42,7 @@ window instanceof Object || function () {
         (function () {//avoid closure
             var script = document.createElement('script');
             script.onreadystatechange = onReadyStateChange;
-            document.appendChild(script);
+            document.body.appendChild(script);
         }());
         return id;
     }

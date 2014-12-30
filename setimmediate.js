@@ -1,16 +1,16 @@
 /**
- * setImmediate polyfill v1.0.0, supports IE9+
- * © 2014 Dmitry Korobkin
+ * setImmediate polyfill v1.0.1, supports IE9+
+ * © 2014–2015 Dmitry Korobkin
  * Released under the MIT license
  * github.com/Octane/setImmediate
  */
 window.setImmediate || function () {'use strict';
 
-    var uid = 0,
-        storage = {},
-        firstCall = true,
-        slice = Array.prototype.slice,
-        message = 'setImmediatePolyfillMessage';
+    var uid = 0;
+    var storage = {};
+    var firstCall = true;
+    var slice = Array.prototype.slice;
+    var message = 'setImmediatePolyfillMessage';
 
     function fastApply(args) {
         var func = args[0];
@@ -26,9 +26,9 @@ window.setImmediate || function () {'use strict';
     }
 
     function callback(event) {
-        var key = event.data,
-            data;
-        if ('string' == typeof key && 0 == key.indexOf(message)) {
+        var key = event.data;
+        var data;
+        if (typeof key == 'string' && key.indexOf(message) == 0) {
             data = storage[key];
             if (data) {
                 delete storage[key];
@@ -38,9 +38,14 @@ window.setImmediate || function () {'use strict';
     }
 
     window.setImmediate = function setImmediate() {
-        var id = uid++,
-            key = message + id;
-        storage[key] = arguments;
+        var id = uid++;
+        var key = message + id;
+        var i = arguments.length;
+        var args = new Array(i);
+        while (i--) {
+            args[i] = arguments[i];
+        }
+        storage[key] = args;
         if (firstCall) {
             firstCall = false;
             window.addEventListener('message', callback);
